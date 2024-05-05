@@ -1,7 +1,6 @@
-import { useState , useEffect} from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
 
-function App() {
+function LocationSelector() {
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
@@ -85,14 +84,14 @@ function App() {
       </select>
 
       <select value={selectedState} onChange={handleStateChange} disabled={loadingStates || !selectedCountry}>
-        <option value="" disabled={loadingStates}>Select State</option>
+        <option value="" disabled={loadingStates || !selectedCountry}>Select State</option>
         {states.map(state => (
           <option key={state} value={state}>{state}</option>
         ))}
       </select>
 
       <select value={selectedCity} onChange={handleCityChange} disabled={loadingCities || !selectedState}>
-        <option value="" disabled={loadingCities}>Select City</option>
+        <option value="" disabled={loadingCities || !selectedState}>Select City</option>
         {cities.map(city => (
           <option key={city} value={city}>{city}</option>
         ))}
@@ -102,4 +101,5 @@ function App() {
     </div>
   );
 }
-export default App
+
+export default LocationSelector;
